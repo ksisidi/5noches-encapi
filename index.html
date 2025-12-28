@@ -11,6 +11,7 @@
             box-sizing: border-box;
             font-family: 'Courier New', monospace;
             user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
@@ -21,8 +22,9 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
             overflow: hidden;
+            touch-action: none;
         }
         
         /* Menú Principal */
@@ -40,15 +42,19 @@
             align-items: center;
             justify-content: center;
             transition: opacity 0.5s;
+            padding: 20px;
         }
         
         .menu-title {
             color: #8B4513;
-            font-size: 5rem;
+            font-size: clamp(2.5rem, 8vw, 5rem);
             margin-bottom: 20px;
             text-shadow: 0 0 20px #A0522D, 0 0 40px #FF8C00;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
             animation: titleGlow 3s infinite alternate;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
         }
         
         @keyframes titleGlow {
@@ -58,60 +64,71 @@
         
         .menu-subtitle {
             color: #aaa;
-            font-size: 1.5rem;
-            margin-bottom: 50px;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            margin-bottom: 30px;
             background: rgba(0, 0, 0, 0.7);
             padding: 10px 20px;
             border-radius: 10px;
+            text-align: center;
+            max-width: 90%;
+            font-family: 'Courier New', monospace;
         }
         
         .menu-options {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
+            width: 100%;
+            max-width: 500px;
         }
         
         .menu-btn {
-            padding: 20px 60px;
+            padding: 15px 30px;
             background: linear-gradient(to bottom, #8B4513 0%, #A0522D 100%);
             color: white;
             border: 3px solid #FF8C00;
             border-radius: 10px;
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             cursor: pointer;
             transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            min-width: 300px;
+            width: 100%;
+            max-width: 300px;
             text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
         }
         
         .menu-btn:hover {
             background: linear-gradient(to bottom, #A0522D 0%, #FF8C00 100%);
-            transform: scale(1.1);
+            transform: scale(1.05);
             box-shadow: 0 0 30px rgba(255, 140, 0, 0.7);
         }
         
         .menu-instructions {
             position: absolute;
-            bottom: 40px;
+            bottom: 20px;
             color: #666;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
             text-align: center;
-            width: 80%;
+            width: 90%;
             background: rgba(0, 0, 0, 0.5);
             padding: 10px;
             border-radius: 5px;
+            font-family: 'Courier New', monospace;
         }
         
         /* Contenedor del juego */
         .game-container {
             display: none;
             flex-direction: column;
-            width: 1000px;
-            height: 750px;
+            width: 100%;
+            max-width: 1000px;
+            height: 90vh;
+            max-height: 750px;
             background-color: #111;
             border: 5px solid #8B4513;
             border-radius: 10px;
@@ -120,62 +137,50 @@
             position: relative;
         }
         
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-            max-width: 1000px;
-            width: 100%;
-        }
-        
-        h1 {
-            color: #8B4513;
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px #A0522D;
-            letter-spacing: 2px;
-        }
-        
-        .subtitle {
-            color: #aaa;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-        
         .top-panel {
             display: flex;
             height: 70px;
+            min-height: 60px;
             background-color: #222;
             border-bottom: 3px solid #8B4513;
-            padding: 10px 20px;
+            padding: 10px;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
         }
         
         .stats {
             display: flex;
-            gap: 25px;
+            gap: 15px;
+            flex-wrap: wrap;
+            flex: 1;
         }
         
         .stat-item {
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-width: 100px;
         }
         
         .stat-label {
-            font-size: 0.9rem;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
             color: #999;
+            font-family: 'Courier New', monospace;
         }
         
         .stat-value {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             font-weight: bold;
             color: #fff;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
         }
         
         .energy-bar {
-            width: 200px;
-            height: 20px;
+            width: 150px;
+            max-width: 200px;
+            height: 15px;
             background-color: #333;
             border-radius: 10px;
             overflow: hidden;
@@ -190,22 +195,28 @@
         }
         
         .time-display {
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: #A0522D;
             font-weight: bold;
             text-shadow: 0 0 5px #8B4513;
+            margin: 0 10px;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
         }
         
         .night-display {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
             color: #A0522D;
-            margin-left: 20px;
+            margin-left: 10px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
         }
         
         .main-display {
             display: flex;
             flex: 1;
             position: relative;
+            min-height: 400px;
         }
         
         .office-view {
@@ -226,10 +237,11 @@
             display: block;
         }
         
+        /* FONDO DE OFICINA */
         .office-background {
             width: 100%;
             height: 100%;
-            background: url('img/menu_background.png') no-repeat center center;
+            background: #1a1a1a url('img/office_background.png') no-repeat center center;
             background-size: cover;
             position: relative;
             transition: filter 0.5s;
@@ -249,51 +261,60 @@
         
         .monitor {
             position: absolute;
-            bottom: 220px;
+            bottom: 150px;
             left: 50%;
             transform: translateX(-50%);
-            width: 350px;
-            height: 220px;
-            background: url('img/office_monitor.png') no-repeat center center;
+            width: 300px;
+            max-width: 80%;
+            height: 180px;
+            background: #111 url('img/office_monitor.png') no-repeat center center;
             background-size: contain;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #0f0;
-            font-size: 1.3rem;
+            font-size: clamp(0.9rem, 2vw, 1.3rem);
             text-align: center;
             line-height: 1.5;
-            padding: 15px;
+            padding: 10px;
             z-index: 2;
+            border: 3px solid #444;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
         }
         
         .monitor-text {
             background: rgba(0, 0, 0, 0.7);
             padding: 10px;
             border-radius: 5px;
+            font-family: 'Courier New', monospace;
         }
         
         .monitor.off .monitor-text {
             color: #333;
         }
         
-        /* Puertas */
+        /* PUERTAS */
         .doors {
             position: absolute;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
-            padding: 0 40px;
+            padding: 0 20px;
+            z-index: 3;
         }
         
         .door {
-            width: 140px;
-            height: 280px;
-            background: url('img/door.png') no-repeat center center;
+            width: 180px;
+            height: 350px;
+            background: #222 url('img/door.png') no-repeat center center;
             background-size: contain;
             position: relative;
             transition: filter 0.3s;
+            border: 3px solid #8B4513;
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
         }
         
         .door.active {
@@ -302,17 +323,19 @@
         
         .door-control {
             position: absolute;
-            bottom: 15px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 8px 20px;
+            padding: 8px 15px;
             background-color: #444;
             color: white;
-            border: none;
+            border: 2px solid #666;
             border-radius: 5px;
             cursor: pointer;
-            z-index: 2;
-            font-size: 0.9rem;
+            z-index: 4;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            width: 90%;
+            font-family: 'Courier New', monospace;
         }
         
         /* Capibara en oficina */
@@ -340,107 +363,416 @@
             100% { transform: translateY(-10px); }
         }
         
-        /* Cámara - Vistas con imágenes */
+        /* ============================================= */
+        /* INTERFAZ DE CÁMARAS CON IMÁGENES (DEL PRIMER CÓDIGO) */
+        /* ============================================= */
+        
         .camera-monitor {
             width: 100%;
             height: 100%;
             background-color: #000;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* EFECTO DE RUIDO VHS */
+        .vhs-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.15) 0px,
+                    rgba(0, 0, 0, 0.15) 1px,
+                    transparent 1px,
+                    transparent 2px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, 0.1) 0px,
+                    rgba(0, 0, 0, 0.1) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            opacity: 0.3;
+            z-index: 1;
+            pointer-events: none;
+            animation: vhsFlicker 0.1s infinite;
+        }
+        
+        @keyframes vhsFlicker {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.4; }
+        }
+        
+        /* SCANLINES */
+        .scanlines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 0, 0, 0.5) 50%
+            );
+            background-size: 100% 4px;
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        
+        /* GRANO DE PELÍCULA */
+        .film-grain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+            z-index: 3;
+            pointer-events: none;
+            opacity: 0.25;
+        }
+        
+        /* VISTA DE CÁMARA PRINCIPAL */
+        .camera-main-view {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .camera-feed {
             width: 100%;
             height: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .camera-feed-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             position: absolute;
             top: 0;
             left: 0;
         }
         
-        .camera-feed-content {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-        
-        .camera-scene {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            position: relative;
-        }
-        
-        /* Capibara en cámara */
-        .capibara-camera {
+        .camera-feed-overlay {
             position: absolute;
-            width: 80px;
-            height: 50px;
-            background: url('img/capibara_side.png') no-repeat center center;
-            background-size: contain;
-            display: none;
-            z-index: 10;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
         }
         
-        .capibara-camera.show {
-            display: block;
-        }
-        
-        .camera-info {
+        .camera-feed-info {
             position: absolute;
             top: 10px;
             left: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 12px;
             border-radius: 5px;
-            font-family: monospace;
+            border-left: 3px solid #0f0;
+            z-index: 2;
+            font-family: 'Courier New', monospace;
             color: #0f0;
-            z-index: 10;
+            font-size: 0.9rem;
+            max-width: 80%;
         }
         
-        .camera-list {
+        .camera-feed-info .camera-id {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+        
+        .camera-feed-info .camera-name {
+            color: #ccc;
+            font-size: 0.8rem;
+        }
+        
+        .capibara-in-camera {
             position: absolute;
-            bottom: 10px;
-            left: 10px;
+            z-index: 3;
+            transition: all 0.3s;
+        }
+        
+        .capibara-in-camera img {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 5px #000);
+        }
+        
+        /* MAPA DE CÁMARAS */
+        .camera-map-container {
+            height: 150px;
+            background: rgba(20, 20, 20, 0.9);
+            border-top: 2px solid #333;
+            padding: 10px;
+            overflow-x: auto;
             display: flex;
             gap: 10px;
-            z-index: 10;
         }
         
-        .camera-btn {
-            padding: 8px 12px;
-            background-color: rgba(50, 50, 50, 0.8);
-            color: white;
-            border: 1px solid #666;
+        .camera-thumbnail {
+            min-width: 120px;
+            height: 100%;
+            background: rgba(40, 40, 40, 0.8);
+            border: 2px solid #666;
             border-radius: 3px;
+            display: flex;
+            flex-direction: column;
             cursor: pointer;
+            transition: all 0.3s;
+            overflow: hidden;
+            position: relative;
         }
         
-        .camera-btn.active {
-            background-color: #8B4513;
-            border-color: #A0522D;
+        .camera-thumbnail:hover {
+            background: rgba(60, 60, 60, 0.8);
+            border-color: #888;
         }
         
-        .hall-lights {
+        .camera-thumbnail.active {
+            border-color: #0f0;
+            background: rgba(0, 40, 0, 0.8);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        
+        .camera-thumbnail.danger {
+            border-color: #ff4444;
+            background: rgba(60, 0, 0, 0.8);
+            animation: dangerPulse 1s infinite alternate;
+        }
+        
+        @keyframes dangerPulse {
+            0% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); }
+            100% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); }
+        }
+        
+        .camera-thumbnail-image {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .camera-thumbnail-info {
+            padding: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+        }
+        
+        .camera-thumbnail-id {
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .camera-thumbnail-name {
+            color: #aaa;
+            font-size: 0.7rem;
+        }
+        
+        .capibara-indicator {
             position: absolute;
-            width: 120px;
-            height: 90px;
-            background-color: transparent;
+            top: 5px;
+            right: 5px;
+            width: 10px;
+            height: 10px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: blink 1s infinite;
             display: none;
         }
         
-        .hall-lights.on {
-            display: block;
-            background: radial-gradient(circle, rgba(255,255,200,0.8) 0%, rgba(255,255,200,0) 70%);
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
         
-        .left-light {
-            left: 0;
-            top: 250px;
+        /* CONTADOR DE PUERTA */
+        .door-countdown {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #ff4444;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 20px 30px;
+            border-radius: 10px;
+            border: 3px solid #ff4444;
+            z-index: 10;
+            display: none;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 10px #000;
+            animation: countdownPulse 1s infinite alternate;
         }
         
-        .right-light {
-            right: 0;
-            top: 250px;
+        @keyframes countdownPulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+        
+        /* CONTROLES PARA MÓVIL */
+        .mobile-controls {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+        }
+        
+        .mobile-controls-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .mobile-btn {
+            padding: 15px 20px;
+            background-color: #333;
+            color: white;
+            border: 2px solid #555;
+            border-radius: 10px;
+            font-size: 1rem;
+            flex: 1;
+            margin: 0 5px;
+            text-align: center;
+            touch-action: manipulation;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .mobile-btn:active {
+            background-color: #8B4513;
+            transform: scale(0.95);
+        }
+        
+        .mobile-btn.door {
+            background-color: #A0522D;
+        }
+        
+        .mobile-btn.camera {
+            background-color: #2D4D7A;
+        }
+        
+        .mobile-btn.light {
+            background-color: #FF8C00;
+        }
+        
+        /* Para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .game-container {
+                width: 100%;
+                height: 100vh;
+                max-height: none;
+                border: none;
+                border-radius: 0;
+            }
+            
+            .top-panel {
+                height: auto;
+                padding: 5px;
+            }
+            
+            .stats {
+                justify-content: center;
+            }
+            
+            .stat-item {
+                min-width: 80px;
+            }
+            
+            .energy-bar {
+                width: 100px;
+            }
+            
+            .time-display, .night-display {
+                font-size: 1rem;
+            }
+            
+            .doors {
+                padding: 0 10px;
+            }
+            
+            .door {
+                width: 140px;
+                height: 280px;
+            }
+            
+            .monitor {
+                bottom: 120px;
+                width: 250px;
+                height: 150px;
+            }
+            
+            .mobile-controls {
+                display: block;
+            }
+            
+            .desktop-controls {
+                display: none;
+            }
+            
+            .camera-map-container {
+                height: 120px;
+            }
+            
+            .camera-thumbnail {
+                min-width: 100px;
+            }
+            
+            .door-countdown {
+                font-size: 1.5rem;
+                padding: 15px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .door {
+                width: 120px;
+                height: 240px;
+            }
+            
+            .monitor {
+                bottom: 100px;
+                width: 200px;
+                height: 120px;
+                font-size: 0.9rem;
+            }
+            
+            .mobile-btn {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .camera-map-container {
+                height: 100px;
+            }
+            
+            .camera-thumbnail {
+                min-width: 80px;
+            }
         }
         
         .controls-panel {
@@ -462,6 +794,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 1.1rem;
+            font-family: 'Courier New', monospace;
         }
         
         .control-button:hover {
@@ -474,7 +807,8 @@
         }
         
         .instructions {
-            width: 1000px;
+            width: 100%;
+            max-width: 1000px;
             margin-top: 20px;
             padding: 15px;
             background-color: #222;
@@ -519,19 +853,27 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 20px;
         }
         
         .game-over h2 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 8vw, 3rem);
             color: #cc0000;
             margin-bottom: 20px;
             text-shadow: 0 0 10px #ff0000;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .game-over.win h2 {
+            color: #00cc00;
+            text-shadow: 0 0 10px #00ff00;
         }
         
         .game-over p {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 4vw, 1.5rem);
             margin-bottom: 30px;
-            max-width: 80%;
+            max-width: 90%;
+            font-family: 'Courier New', monospace;
         }
         
         .game-over button {
@@ -543,6 +885,7 @@
             font-size: 1.2rem;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-family: 'Courier New', monospace;
         }
         
         .game-over button:hover {
@@ -565,13 +908,15 @@
         }
         
         .jumpscare h2 {
-            font-size: 4rem;
+            font-size: clamp(2rem, 8vw, 4rem);
             color: white;
             text-shadow: 0 0 10px black;
-            margin-top: 400px;
+            margin-top: 50vh;
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 10px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
         }
         
         .sound-control {
@@ -586,6 +931,7 @@
             background-color: rgba(0, 0, 0, 0.7);
             padding: 5px 10px;
             border-radius: 5px;
+            font-family: 'Courier New', monospace;
         }
         
         .sound-toggle {
@@ -625,11 +971,12 @@
         }
         
         .energy-out-message {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 6vw, 2rem);
             color: #ff4444;
             margin-bottom: 30px;
             text-shadow: 0 0 10px #ff0000;
             animation: flicker 2s infinite;
+            font-family: 'Courier New', monospace;
         }
         
         @keyframes flicker {
@@ -651,9 +998,10 @@
         }
         
         .countdown {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 4vw, 1.5rem);
             color: #fff;
             margin-top: 20px;
+            font-family: 'Courier New', monospace;
         }
         
         footer {
@@ -661,6 +1009,7 @@
             text-align: center;
             color: #666;
             font-size: 0.9rem;
+            font-family: 'Courier New', monospace;
         }
     </style>
 </head>
@@ -704,7 +1053,6 @@
             </div>
             
             <div class="time-display" id="timeDisplay">12:00 AM</div>
-            
             <div class="night-display" id="nightDisplay">NOCHE 1</div>
         </div>
         
@@ -735,23 +1083,35 @@
                     
                     <!-- Capibara en oficina -->
                     <div class="capibara-office" id="capibaraOffice"></div>
+                    
+                    <!-- Contador de puerta (aparece cuando el capibara está en la puerta) -->
+                    <div class="door-countdown" id="doorCountdown">10</div>
                 </div>
             </div>
             
-            <!-- Vista de cámara -->
+            <!-- Vista de cámara (SISTEMA DEL PRIMER CÓDIGO) -->
             <div class="camera-view" id="cameraView">
                 <div class="camera-monitor">
-                    <div class="camera-feed" id="cameraFeed">
-                        <!-- Contenido dinámico de las cámaras -->
+                    <!-- Efectos visuales -->
+                    <div class="vhs-overlay"></div>
+                    <div class="scanlines"></div>
+                    <div class="film-grain"></div>
+                    
+                    <!-- Vista principal de cámara -->
+                    <div class="camera-main-view">
+                        <div class="camera-feed" id="cameraFeed">
+                            <div class="camera-feed-overlay"></div>
+                            <div class="camera-feed-info" id="cameraFeedInfo">
+                                <div class="camera-id" id="cameraFeedId">CAM 1A</div>
+                                <div class="camera-name" id="cameraFeedName">ESCENARIO</div>
+                            </div>
+                            <!-- Capibara aparecerá aquí dinámicamente -->
+                        </div>
                     </div>
-                    <div class="camera-info" id="cameraInfo">
-                        CÁMARA 1: ESCENARIO
-                    </div>
-                    <div class="camera-list">
-                        <button class="camera-btn" data-camera="1">CÁM 1 - ESCENARIO (1)</button>
-                        <button class="camera-btn" data-camera="2">CÁM 2 - PASILLO IZQ (2)</button>
-                        <button class="camera-btn" data-camera="3">CÁM 3 - PASILLO DER (3)</button>
-                        <button class="camera-btn" data-camera="4">CÁM 4 - COCINA (4)</button>
+                    
+                    <!-- Mapa de miniaturas de cámaras -->
+                    <div class="camera-map-container" id="cameraMapContainer">
+                        <!-- Las miniaturas se generarán dinámicamente con JavaScript -->
                     </div>
                 </div>
             </div>
@@ -770,10 +1130,24 @@
             </div>
         </div>
         
-        <!-- Panel de controles -->
-        <div class="controls-panel">
+        <!-- Panel de controles DESKTOP -->
+        <div class="controls-panel desktop-controls">
             <button class="control-button" id="cameraBtn">CÁMARAS (C)</button>
             <button class="control-button" id="lightsBtn">LUCES (F)</button>
+        </div>
+        
+        <!-- Controles para MÓVIL -->
+        <div class="mobile-controls" id="mobileControls">
+            <div class="mobile-controls-row">
+                <button class="mobile-btn door" id="mobileLeftDoor">PUERTA IZQ</button>
+                <button class="mobile-btn camera" id="mobileCameraBtn">CÁMARAS</button>
+                <button class="mobile-btn door" id="mobileRightDoor">PUERTA DER</button>
+            </div>
+            <div class="mobile-controls-row">
+                <button class="mobile-btn light" id="mobileLightsBtn">LUCES</button>
+                <button class="mobile-btn camera" id="mobileCamLeftBtn">CÁM ◄</button>
+                <button class="mobile-btn camera" id="mobileCamRightBtn">CÁM ►</button>
+            </div>
         </div>
         
         <!-- Control de sonido -->
@@ -793,18 +1167,28 @@
             <p id="gameOverMessage">Te quedaste sin energía y el capibara te atrapó.</p>
             <button id="restartButton">REINICIAR NOCHE</button>
         </div>
+        
+        <!-- Pantalla de Victoria (DEL SEGUNDO CÓDIGO) -->
+        <div class="game-over win" id="winScreen" style="display: none;">
+            <h2>¡VICTORIA!</h2>
+            <p id="winMessage">¡Has sobrevivido hasta las 6:00 AM!</p>
+            <button id="winRestartButton">REINICIAR NOCHE</button>
+            <button id="backToMenuButton" style="margin-top: 15px;">VOLVER AL MENÚ</button>
+        </div>
     </div>
     
     <!-- Instrucciones -->
     <div class="instructions" style="display: none;" id="gameInstructions">
         <h3>INSTRUCCIONES DE JUEGO</h3>
         <ul>
-            <li><span class="key">C</span> - Activar/Desactivar cámaras (consume energía)</li>
-            <li><span class="key">1-4</span> - Cambiar entre cámaras (solo cuando las cámaras están activas)</li>
-            <li><span class="key">Q</span> - Cerrar/Abrir puerta izquierda (consume energía cuando está cerrada)</li>
-            <li><span class="key">E</span> - Cerrar/Abrir puerta derecha (consume energía cuando está cerrada)</li>
-            <li><span class="key">F</span> - Encender/Apagar luces de pasillo (consume energía, revela al capibara)</li>
+            <li><span class="key">C</span> o Botón CÁMARAS - Activar/Desactivar sistema de cámaras (consume energía)</li>
+            <li><span class="key">CLICK EN CÁMARA</span> - Seleccionar cámara específica en el mapa inferior</li>
+            <li><span class="key">◄ ►</span> o Botones CÁM - Navegar entre cámaras</li>
+            <li><span class="key">Q</span> o Botón PUERTA IZQ - Cerrar/Abrir puerta izquierda</li>
+            <li><span class="key">E</span> o Botón PUERTA DER - Cerrar/Abrir puerta derecha</li>
+            <li><span class="key">F</span> o Botón LUCES - Encender/Apagar luces de pasillo</li>
             <li><span class="key">ESPACIO</span> - Intentar reiniciar sistemas (cuando se acaba la energía)</li>
+            <li><span class="key">¡ADVERTENCIA!</span> Cuando el capibara llegue a una puerta, tendrás 10 segundos para cerrarla</li>
             <li>OBJETIVO: Sobrevivir hasta las 6:00 AM sin quedarte sin energía y evitando que el capibara entre.</li>
         </ul>
         <button class="menu-btn" style="margin-top: 20px; padding: 10px 20px; font-size: 1rem;" id="backToMenu">VOLVER AL MENÚ</button>
@@ -842,6 +1226,16 @@
     <audio id="soundStatic" preload="auto">
         <source src="sounds/static.mp3" type="audio/mpeg">
     </audio>
+    
+    <!-- Sonido de energía agotada -->
+    <audio id="soundEnergyOut" preload="auto">
+        <source src="sounds/energyOut.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Sonido de victoria (DEL SEGUNDO CÓDIGO) -->
+    <audio id="soundVictory" preload="auto">
+        <source src="sounds/victory.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         // Variables del juego
@@ -852,7 +1246,7 @@
         let leftDoorClosed = false;
         let rightDoorClosed = false;
         let lightsOn = false;
-        let currentCamera = 1;
+        let currentCamera = 0; // Índice de cámara actual
         let soundEnabled = true;
         let energyOutSequenceActive = false;
         let energyOutTimer = 10;
@@ -860,22 +1254,83 @@
         let currentNight = 1;
         let capibaraPeeking = false;
         let capibaraPeekTimer = 0;
+        let doorCountdownActive = false;
+        let doorCountdownValue = 10;
+        let doorCountdownInterval;
+        let capibaraStuckTimer = 0; // Timer para el bug de la cocina (DEL SEGUNDO CÓDIGO)
         
-        // Configuración por noche
+        // Configuración por noche (CONSUMO REDUCIDO EN 50% DEL PRIMER CÓDIGO)
         const nightSettings = {
-            1: { movementChance: 0.03, energyDrain: 0.8, capibaraSpeed: 1.0 },
-            2: { movementChance: 0.05, energyDrain: 0.9, capibaraSpeed: 1.3 },
-            3: { movementChance: 0.08, energyDrain: 1.0, capibaraSpeed: 1.6 }
+            1: { movementChance: 0.03, energyDrain: 0.9, capibaraSpeed: 1.0 }, // Antes 0.8
+            2: { movementChance: 0.05, energyDrain: 1.3, capibaraSpeed: 1.5 }, // Antes 0.9
+            3: { movementChance: 0.08, energyDrain: 1.68, capibaraSpeed: 2.0 } // Antes 1.0
         };
+        
+        // Configuración de cámaras con imágenes (DEL PRIMER CÓDIGO)
+        const cameras = [
+            { 
+                id: "1A", 
+                name: "ESCENARIO", 
+                location: "stage",
+                image: "img/camera1_stage.png",
+                capibaraPosition: { left: "45%", bottom: "30%", width: "80px", height: "50px" }
+            },
+            { 
+                id: "2B", 
+                name: "PASILLO IZQ", 
+                location: "hall_left",
+                image: "img/camera2_hall_left.png",
+                capibaraPosition: { left: "30%", bottom: "25%", width: "70px", height: "45px" }
+            },
+            { 
+                id: "3C", 
+                name: "PUERTA IZQ", 
+                location: "door_left",
+                image: "img/camera_door_left.png",
+                capibaraPosition: { left: "70%", bottom: "20%", width: "90px", height: "60px" }
+            },
+            { 
+                id: "4D", 
+                name: "OFICINA", 
+                location: "office",
+                image: "img/camera_office.png",
+                capibaraPosition: { left: "50%", bottom: "35%", width: "80px", height: "50px" }
+            },
+            { 
+                id: "5E", 
+                name: "PUERTA DER", 
+                location: "door_right",
+                image: "img/camera_door_right.png",
+                capibaraPosition: { left: "30%", bottom: "20%", width: "90px", height: "60px" }
+            },
+            { 
+                id: "6F", 
+                name: "PASILLO DER", 
+                location: "hall_right",
+                image: "img/camera3_hall_right.png",
+                capibaraPosition: { left: "70%", bottom: "25%", width: "70px", height: "45px" }
+            },
+            { 
+                id: "7G", 
+                name: "COCINA", 
+                location: "kitchen",
+                image: "img/camera4_kitchen.png",
+                capibaraPosition: { left: "50%", bottom: "30%", width: "80px", height: "50px" }
+            }
+        ];
         
         // Estado del capibara
         let capibara = { 
             location: "stage",
             movementChance: 0.03,
-            energyDrain: 0.8,
+            energyDrain: 0.4, // Reducido de 0.8
             speed: 1.0,
             lastMovement: 0,
-            isPeeking: false
+            isPeeking: false,
+            atDoorTimer: null,
+            doorCountdown: 10,
+            stuckInKitchen: false, // DEL SEGUNDO CÓDIGO
+            stuckTimer: 0 // DEL SEGUNDO CÓDIGO
         };
         
         // Referencias a elementos del DOM
@@ -893,19 +1348,27 @@
         const monitorText = document.getElementById('monitorText');
         const gameOverScreen = document.getElementById('gameOverScreen');
         const gameOverMessage = document.getElementById('gameOverMessage');
+        const winScreen = document.getElementById('winScreen'); // DEL SEGUNDO CÓDIGO
+        const winMessage = document.getElementById('winMessage'); // DEL SEGUNDO CÓDIGO
         const jumpscareScreen = document.getElementById('jumpscare');
         const restartButton = document.getElementById('restartButton');
+        const winRestartButton = document.getElementById('winRestartButton'); // DEL SEGUNDO CÓDIGO
+        const backToMenuButton = document.getElementById('backToMenuButton'); // DEL SEGUNDO CÓDIGO
         const officeBackground = document.getElementById('officeBackground');
         const leftLight = document.getElementById('leftLight');
         const rightLight = document.getElementById('rightLight');
         const cameraFeed = document.getElementById('cameraFeed');
-        const cameraInfo = document.getElementById('cameraInfo');
+        const cameraFeedInfo = document.getElementById('cameraFeedInfo');
+        const cameraFeedId = document.getElementById('cameraFeedId');
+        const cameraFeedName = document.getElementById('cameraFeedName');
         const soundToggle = document.getElementById('soundToggle');
         const energyOutSequence = document.getElementById('energyOutSequence');
         const energyOutMessage = document.getElementById('energyOutMessage');
         const countdown = document.getElementById('countdown');
         const capibaraOffice = document.getElementById('capibaraOffice');
         const sleepingCapibara = document.getElementById('sleepingCapibara');
+        const cameraMapContainer = document.getElementById('cameraMapContainer');
+        const doorCountdownDisplay = document.getElementById('doorCountdown');
         
         // Elementos de audio
         const soundClick = document.getElementById('soundClick');
@@ -916,6 +1379,8 @@
         const soundLowEnergy = document.getElementById('soundLowEnergy');
         const soundMove = document.getElementById('soundMove');
         const soundStatic = document.getElementById('soundStatic');
+        const soundEnergyOut = document.getElementById('soundEnergyOut');
+        const soundVictory = document.getElementById('soundVictory'); // DEL SEGUNDO CÓDIGO
         
         // Botones del menú
         const startNight1 = document.getElementById('startNight1');
@@ -924,28 +1389,36 @@
         const instructionsBtn = document.getElementById('instructionsBtn');
         const backToMenu = document.getElementById('backToMenu');
         
-        // Botones del juego
+        // Botones del juego DESKTOP
         const cameraBtn = document.getElementById('cameraBtn');
         const lightsBtn = document.getElementById('lightsBtn');
         const leftDoorBtn = document.getElementById('leftDoorBtn');
         const rightDoorBtn = document.getElementById('rightDoorBtn');
         const leftDoor = document.getElementById('leftDoor');
         const rightDoor = document.getElementById('rightDoor');
-        const cameraBtns = document.querySelectorAll('.camera-btn');
+        
+        // Controles para MÓVIL
+        const mobileControls = document.getElementById('mobileControls');
+        const mobileLeftDoor = document.getElementById('mobileLeftDoor');
+        const mobileRightDoor = document.getElementById('mobileRightDoor');
+        const mobileCameraBtn = document.getElementById('mobileCameraBtn');
+        const mobileLightsBtn = document.getElementById('mobileLightsBtn');
+        const mobileCamLeftBtn = document.getElementById('mobileCamLeftBtn');
+        const mobileCamRightBtn = document.getElementById('mobileCamRightBtn');
         
         // Inicializar audio
         function initAudio() {
-            // Precargar todos los sonidos
-            const sounds = [soundClick, soundCamera, soundDoor, soundJumpscare, soundLight, soundLowEnergy, soundMove, soundStatic];
+            const sounds = [soundClick, soundCamera, soundDoor, soundJumpscare, soundLight, soundLowEnergy, soundMove, soundStatic, soundEnergyOut, soundVictory];
             
             sounds.forEach(sound => {
                 sound.volume = 0.7;
                 sound.load();
             });
             
-            // Configurar volumen específico
             soundJumpscare.volume = 1.0;
             soundStatic.volume = 0.4;
+            soundEnergyOut.volume = 0.8;
+            soundVictory.volume = 0.8; // DEL SEGUNDO CÓDIGO
         }
         
         // Función para reproducir sonido
@@ -954,6 +1427,123 @@
             
             soundElement.currentTime = 0;
             soundElement.play().catch(e => console.log("Error reproduciendo sonido:", e));
+        }
+        
+        // Crear interfaz de cámaras con miniaturas (DEL PRIMER CÓDIGO)
+        function createCameraInterface() {
+            cameraMapContainer.innerHTML = '';
+            cameras.forEach((cam, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = 'camera-thumbnail';
+                thumbnail.dataset.index = index;
+                thumbnail.dataset.location = cam.location;
+                
+                // Establecer imagen de fondo
+                thumbnail.style.backgroundImage = `url('${cam.image}')`;
+                
+                thumbnail.innerHTML = `
+                    <div class="camera-thumbnail-image">
+                        <div class="capibara-indicator"></div>
+                    </div>
+                    <div class="camera-thumbnail-info">
+                        <div class="camera-thumbnail-id">CAM ${cam.id}</div>
+                        <div class="camera-thumbnail-name">${cam.name}</div>
+                    </div>
+                `;
+                
+                thumbnail.addEventListener('click', () => {
+                    if (!gameActive || !camerasActive || energy <= 0) return;
+                    switchCamera(index);
+                });
+                
+                cameraMapContainer.appendChild(thumbnail);
+            });
+        }
+        
+        // Actualizar vista de cámara principal (DEL PRIMER CÓDIGO)
+        function updateCameraView() {
+            const cam = cameras[currentCamera];
+            
+            // Establecer imagen de fondo
+            cameraFeed.style.backgroundImage = `url('${cam.image}')`;
+            cameraFeedId.textContent = `CAM ${cam.id}`;
+            cameraFeedName.textContent = cam.name;
+            
+            // Remover capibara anterior
+            const existingCapibara = document.querySelector('.capibara-in-camera');
+            if (existingCapibara) {
+                existingCapibara.remove();
+            }
+            
+            // Añadir capibara si está en esta cámara
+            if (cam.location === capibara.location) {
+                const capibaraEl = document.createElement('div');
+                capibaraEl.className = 'capibara-in-camera';
+                capibaraEl.style.cssText = `
+                    position: absolute;
+                    ${cam.capibaraPosition.left};
+                    ${cam.capibaraPosition.bottom};
+                    width: ${cam.capibaraPosition.width};
+                    height: ${cam.capibaraPosition.height};
+                    z-index: 3;
+                `;
+                
+                const capibaraImg = document.createElement('img');
+                capibaraImg.src = 'img/capibara_side.png';
+                capibaraImg.alt = 'Capibara';
+                capibaraEl.appendChild(capibaraImg);
+                
+                cameraFeed.appendChild(capibaraEl);
+                
+                // Añadir texto de advertencia (MODIFICADO: Solo mostrar en cámara actual)
+                const warningText = document.createElement('div');
+                warningText.style.cssText = `
+                    position: absolute;
+                    bottom: 10%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(255, 0, 0, 0.8);
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    font-family: 'Courier New', monospace;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    text-shadow: 0 0 5px black;
+                    border: 3px solid white;
+                    z-index: 4;
+                    text-align: center;
+                    animation: pulse 1s infinite;
+                    white-space: nowrap;
+                `;
+                warningText.textContent = '¡CAPIBARA DETECTADO!';
+                cameraFeed.appendChild(warningText);
+            }
+            
+            // Actualizar miniaturas
+            updateCameraThumbnails();
+        }
+        
+        // Actualizar miniaturas de cámaras
+        function updateCameraThumbnails() {
+            const thumbnails = document.querySelectorAll('.camera-thumbnail');
+            thumbnails.forEach((thumb, index) => {
+                thumb.classList.remove('active', 'danger');
+                
+                // Indicador de capibara
+                const indicator = thumb.querySelector('.capibara-indicator');
+                if (cameras[index].location === capibara.location) {
+                    indicator.style.display = 'block';
+                    thumb.classList.add('danger');
+                } else {
+                    indicator.style.display = 'none';
+                }
+                
+                // Cámara activa
+                if (index === currentCamera) {
+                    thumb.classList.add('active');
+                }
+            });
         }
         
         // Actualizar UI
@@ -967,14 +1557,15 @@
             doorsStatus.textContent = `${leftStatus} | ${rightStatus}`;
             
             // Actualizar cámara
-            cameraStatus.textContent = camerasActive ? `CÁM ${currentCamera}` : "OFF";
+            cameraStatus.textContent = camerasActive ? `CAM ${cameras[currentCamera].id}` : "OFF";
             
             // Actualizar tiempo
             const hours = Math.floor(time / 60);
             const minutes = time % 60;
             const hourDisplay = (hours % 12) || 12;
             const ampm = hours < 6 ? "AM" : "PM";
-            timeDisplay.textContent = `${hourDisplay.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+            const timeString = `${hourDisplay.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+            timeDisplay.textContent = timeString;
             
             // Actualizar monitor
             if (energy <= 0) {
@@ -982,7 +1573,7 @@
                 officeMonitor.classList.add('off');
             } else {
                 monitorText.textContent = camerasActive 
-                    ? `CÁMARA ${currentCamera} ACTIVA\nVIGILANDO...` 
+                    ? `CAM ${cameras[currentCamera].id} ACTIVA\n${cameras[currentCamera].name}` 
                     : "SISTEMA DE CÁMARAS\nDESACTIVADO";
                 officeMonitor.classList.remove('off');
             }
@@ -993,9 +1584,15 @@
             leftDoorBtn.textContent = `PUERTA IZQ (Q): ${leftDoorClosed ? 'ABRIR' : 'CERRAR'}`;
             rightDoorBtn.textContent = `PUERTA DER (E): ${rightDoorClosed ? 'ABRIR' : 'CERRAR'}`;
             
+            // Actualizar botones móviles de puertas
+            mobileLeftDoor.textContent = `PUERTA IZQ: ${leftDoorClosed ? 'ABRIR' : 'CERRAR'}`;
+            mobileRightDoor.textContent = `PUERTA DER: ${rightDoorClosed ? 'ABRIR' : 'CERRAR'}`;
+            
             // Actualizar luces
             cameraBtn.classList.toggle('active', camerasActive);
             lightsBtn.classList.toggle('active', lightsOn);
+            mobileCameraBtn.classList.toggle('active', camerasActive);
+            mobileLightsBtn.classList.toggle('active', lightsOn);
             officeBackground.classList.toggle('lights-off', energy <= 0 || !lightsOn);
             
             // Actualizar luces de pasillo
@@ -1030,6 +1627,14 @@
             if (energy < 30 && energy > 0 && Math.random() < 0.1) {
                 playSound(soundLowEnergy);
             }
+            
+            // Manejar contador de puerta (DEL PRIMER CÓDIGO)
+            if (doorCountdownActive) {
+                doorCountdownDisplay.style.display = 'block';
+                doorCountdownDisplay.textContent = doorCountdownValue;
+            } else {
+                doorCountdownDisplay.style.display = 'none';
+            }
         }
         
         // Actualizar posición del capibara en oficina
@@ -1040,122 +1645,18 @@
                 capibaraOffice.classList.add('show');
                 
                 if (capibara.location === "door_left") {
-                    capibaraOffice.style.left = "140px";
-                    capibaraOffice.style.bottom = "280px";
+                    capibaraOffice.style.left = "20px";
+                    capibaraOffice.style.bottom = "300px";
                 } else {
-                    capibaraOffice.style.left = "740px";
-                    capibaraOffice.style.bottom = "280px";
+                    capibaraOffice.style.left = "calc(100% - 140px)";
+                    capibaraOffice.style.bottom = "300px";
                 }
             } else {
                 capibaraOffice.classList.remove('show');
             }
         }
         
-        // Actualizar vista de cámara con imágenes
-        function updateCameraView() {
-            let cameraHTML = '';
-            let cameraImage = '';
-            
-            // Determinar imagen de cámara según la cámara actual
-            switch(currentCamera) {
-                case 1: // Escenario
-                    cameraImage = 'img/camera1_stage.png';
-                    break;
-                case 2: // Pasillo izquierdo
-                    cameraImage = 'img/camera2_hall_left.png';
-                    break;
-                case 3: // Pasillo derecho
-                    cameraImage = 'img/camera3_hall_right.png';
-                    break;
-                case 4: // Cocina
-                    cameraImage = 'img/camera4_kitchen.png';
-                    break;
-            }
-            
-            // Crear HTML de la cámara con imagen de fondo
-            cameraHTML = `
-                <div class="camera-feed-content">
-                    <div class="camera-scene" style="background-image: url('${cameraImage}');">
-            `;
-            
-            // Añadir capibara si está visible en esta cámara
-            if ((currentCamera === 1 && capibara.location === "stage") ||
-                (currentCamera === 2 && (capibara.location === "hall_left" || capibara.location === "door_left")) ||
-                (currentCamera === 3 && (capibara.location === "hall_right" || capibara.location === "door_right"))) {
-                
-                let capibaraStyle = '';
-                let warningText = '';
-                let warningColor = '#ffcc00';
-                
-                if (currentCamera === 1) {
-                    capibaraStyle = 'left: 45%; bottom: 40%;';
-                    warningText = '⚠ CAPIBARA EN ESCENARIO ⚠';
-                } else if (currentCamera === 2) {
-                    capibaraStyle = capibara.location === "hall_left" ? 'left: 30%; bottom: 30%;' : 'left: 70%; bottom: 30%;';
-                    warningText = capibara.location === "door_left" ? '¡¡CAPIBARA EN LA PUERTA!!' : '⚠ CAPIBARA EN PASILLO IZQ ⚠';
-                    warningColor = capibara.location === "door_left" ? '#ff0000' : '#ffcc00';
-                } else if (currentCamera === 3) {
-                    capibaraStyle = capibara.location === "hall_right" ? 'left: 70%; bottom: 30%;' : 'left: 30%; bottom: 30%;';
-                    warningText = capibara.location === "door_right" ? '¡¡CAPIBARA EN LA PUERTA!!' : '⚠ CAPIBARA EN PASILLO DER ⚠';
-                    warningColor = capibara.location === "door_right" ? '#ff0000' : '#ffcc00';
-                }
-                
-                cameraHTML += `<div class="capibara-camera show" style="${capibaraStyle}"></div>`;
-                
-                // Añadir texto de advertencia
-                cameraHTML += `
-                    <div style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); 
-                                color: ${warningColor}; font-size: 1.5rem; text-shadow: 0 0 10px #000;
-                                background: rgba(0,0,0,0.7); padding: 15px; border-radius: 10px;
-                                border: 3px solid ${warningColor}; text-align: center; animation: pulse 1s infinite;">
-                        ${warningText}
-                    </div>
-                `;
-            } else if (currentCamera === 4) {
-                // Mensaje para cocina
-                cameraHTML += `
-                    <div style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); 
-                                color: #0f0; font-size: 1.5rem; text-shadow: 0 0 10px #000;
-                                background: rgba(0,0,0,0.7); padding: 15px; border-radius: 10px;
-                                text-align: center;">
-                        COCINA VACÍA - ÁREA SEGURA
-                    </div>
-                `;
-            }
-            
-            cameraHTML += `
-                    </div>
-                </div>
-            `;
-            
-            cameraFeed.innerHTML = cameraHTML;
-            cameraInfo.textContent = `CÁMARA ${currentCamera}: ${getCameraName(currentCamera)}`;
-            
-            // Actualizar botones de cámara activos
-            cameraBtns.forEach(btn => {
-                btn.classList.remove('active');
-                if (parseInt(btn.dataset.camera) === currentCamera) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            // Sonido de estática al cambiar de cámara
-            if (Date.now() - lastCameraChange < 200) {
-                playSound(soundStatic);
-            }
-        }
-        
-        function getCameraName(camNum) {
-            switch(camNum) {
-                case 1: return "ESCENARIO";
-                case 2: return "PASILLO IZQUIERDO";
-                case 3: return "PASILLO DERECHO";
-                case 4: return "COCINA";
-                default: return "DESCONOCIDA";
-            }
-        }
-        
-        // Consumir energía
+        // Consumir energía (VALORES REDUCIDOS EN 50% DEL PRIMER CÓDIGO)
         function consumeEnergy(amount) {
             if (!gameActive || energyOutSequenceActive) return;
             
@@ -1169,47 +1670,95 @@
             updateUI();
         }
         
-        // Mover el capibara
+        // Mover el capibara (MEJORADO CON SISTEMA DEL SEGUNDO CÓDIGO)
         function moveCapibara() {
             if (!gameActive || energyOutSequenceActive) return;
             
             // Probabilidad de movimiento ajustada por noche
             const moveProbability = capibara.movementChance * (1 + time / 360);
             
+            // Si el capibara lleva mucho tiempo en la cocina, forzar movimiento (DEL SEGUNDO CÓDIGO)
+            if (capibara.location === "kitchen") {
+                capibara.stuckTimer++;
+                if (capibara.stuckTimer > 5) { // Si lleva 5 turnos en la cocina
+                    capibara.stuckTimer = 0;
+                    // Forzar movimiento fuera de la cocina
+                    capibara.location = "hall_right";
+                    playSound(soundMove);
+                    updateUI();
+                    return;
+                }
+            } else {
+                capibara.stuckTimer = 0;
+            }
+            
             if (Math.random() < moveProbability) {
-                const locations = ["stage", "hall_left", "hall_right", "door_left", "door_right"];
-                const currentIndex = locations.indexOf(capibara.location);
+                const locations = ["stage", "hall_left", "door_left", "office", "door_right", "hall_right", "kitchen"];
                 
-                // El capibara se mueve
-                if (currentIndex < locations.length - 1) {
-                    // 70% avanzar, 30% retroceder o quedarse
-                    if (Math.random() < 0.7) {
-                        let nextIndex = currentIndex + 1;
-                        
-                        // Desde el stage, elegir pasillo aleatorio
-                        if (locations[currentIndex] === "stage") {
-                            nextIndex = Math.random() < 0.5 ? 1 : 2;
+                // Nuevo sistema de movimiento mejorado (DEL SEGUNDO CÓDIGO)
+                const possibleMoves = [];
+                
+                // Determinar movimientos posibles según ubicación actual
+                switch(capibara.location) {
+                    case "stage":
+                        possibleMoves.push(1); // hall_left
+                        possibleMoves.push(5); // hall_right
+                        break;
+                    case "hall_left":
+                        possibleMoves.push(0); // stage
+                        possibleMoves.push(2); // door_left
+                        if (Math.random() < 0.1) possibleMoves.push(3); // office (raro)
+                        break;
+                    case "door_left":
+                        possibleMoves.push(1); // hall_left
+                        if (!leftDoorClosed && Math.random() < 0.4) {
+                            possibleMoves.push(3); // office
                         }
-                        
-                        capibara.location = locations[nextIndex];
-                        capibara.lastMovement = Date.now();
-                        playSound(soundMove);
-                        
-                        // Si llegó a una puerta, empezar a asomarse
-                        if (capibara.location.includes("door")) {
-                            startPeeking();
+                        break;
+                    case "office":
+                        possibleMoves.push(0); // stage
+                        if (!leftDoorClosed) possibleMoves.push(2); // door_left
+                        if (!rightDoorClosed) possibleMoves.push(4); // door_right
+                        break;
+                    case "door_right":
+                        possibleMoves.push(5); // hall_right
+                        if (!rightDoorClosed && Math.random() < 0.4) {
+                            possibleMoves.push(3); // office
                         }
-                    } else if (currentIndex > 0 && Math.random() < 0.3) {
-                        // Retroceder
-                        capibara.location = locations[currentIndex - 1];
-                        capibara.lastMovement = Date.now();
+                        break;
+                    case "hall_right":
+                        possibleMoves.push(0); // stage
+                        possibleMoves.push(4); // door_right
+                        if (Math.random() < 0.2) possibleMoves.push(6); // kitchen
+                        break;
+                    case "kitchen":
+                        // Reducir probabilidad de quedarse en la cocina
+                        if (Math.random() < 0.7) {
+                            possibleMoves.push(5); // hall_right (alta probabilidad de salir)
+                        } else {
+                            possibleMoves.push(6); // kitchen (quedarse)
+                        }
+                        break;
+                }
+                
+                // Si hay movimientos posibles, elegir uno al azar
+                if (possibleMoves.length > 0) {
+                    const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+                    const oldLocation = capibara.location;
+                    capibara.location = locations[randomMove];
+                    capibara.lastMovement = Date.now();
+                    
+                    // Solo reproducir sonido si cambió de ubicación
+                    if (oldLocation !== capibara.location) {
                         playSound(soundMove);
-                        capibara.isPeeking = false;
                     }
                     
-                    // Verificar si está en la puerta
-                    if (capibara.location === "door_left" || capibara.location === "door_right") {
-                        checkCapibaraAtDoor();
+                    // Si llegó a una puerta, empezar cuenta regresiva (DEL PRIMER CÓDIGO)
+                    if (capibara.location.includes("door")) {
+                        startDoorCountdown();
+                    } else {
+                        // Si no está en puerta, detener cualquier contador activo
+                        stopDoorCountdown();
                     }
                     
                     updateUI();
@@ -1224,31 +1773,58 @@
             }
         }
         
-        // Empezar asomo del capibara
-        function startPeeking() {
-            capibara.isPeeking = true;
-            capibaraPeekTimer = Date.now();
+        // Empezar cuenta regresiva de puerta (10 SEGUNDOS PARA REACCIONAR - DEL PRIMER CÓDIGO)
+        function startDoorCountdown() {
+            if (doorCountdownActive) return;
+            
+            doorCountdownActive = true;
+            doorCountdownValue = 10;
+            
+            // Verificar si la puerta ya está cerrada
+            const doorClosed = capibara.location === "door_left" ? leftDoorClosed : rightDoorClosed;
+            if (doorClosed) {
+                // Si la puerta ya está cerrada, solo consume energía extra
+                consumeEnergy(1.5); // Reducido de 3
+                stopDoorCountdown();
+                return;
+            }
+            
+            doorCountdownDisplay.style.display = 'block';
+            doorCountdownDisplay.textContent = doorCountdownValue;
+            
+            doorCountdownInterval = setInterval(() => {
+                doorCountdownValue--;
+                doorCountdownDisplay.textContent = doorCountdownValue;
+                
+                // Verificar si la puerta se cerró durante el contador
+                const currentDoorClosed = capibara.location === "door_left" ? leftDoorClosed : rightDoorClosed;
+                if (currentDoorClosed) {
+                    // Puerta cerrada a tiempo
+                    playSound(soundDoor);
+                    stopDoorCountdown();
+                    consumeEnergy(1.5); // Reducido de 3
+                    return;
+                }
+                
+                if (doorCountdownValue <= 0) {
+                    // Tiempo agotado - jumpscare
+                    clearInterval(doorCountdownInterval);
+                    jumpscare();
+                }
+            }, 1000);
         }
         
-        // Verificar capibara en puerta
-        function checkCapibaraAtDoor() {
-            const doorClosed = capibara.location === "door_left" ? leftDoorClosed : rightDoorClosed;
-            
-            // Si la puerta está abierta, jumpscare después de un tiempo
-            if (!doorClosed) {
-                // El capibara se asoma por 3 segundos antes de atacar
-                setTimeout(() => {
-                    if (!doorClosed && gameActive) {
-                        jumpscare();
-                    }
-                }, 3000);
-            } else {
-                // Si la puerta está cerrada, consume energía extra
-                consumeEnergy(3);
+        // Detener cuenta regresiva de puerta
+        function stopDoorCountdown() {
+            doorCountdownActive = false;
+            doorCountdownDisplay.style.display = 'none';
+            if (doorCountdownInterval) {
+                clearInterval(doorCountdownInterval);
+                doorCountdownInterval = null;
             }
         }
         
-        // Iniciar secuencia de energía agotada
+        // Iniciar secuencia de energía agotada CON SONIDO
         function startEnergyOutSequence() {
             gameActive = false;
             energyOutSequenceActive = true;
@@ -1257,6 +1833,12 @@
             lightsOn = false;
             camerasActive = false;
             cameraView.classList.remove('active');
+            
+            // Detener cualquier contador de puerta
+            stopDoorCountdown();
+            
+            // Reproducir sonido de energía agotada
+            playSound(soundEnergyOut);
             
             // Mostrar secuencia
             energyOutSequence.classList.add('active');
@@ -1267,7 +1849,7 @@
             sleepingCapibara.style.bottom = "50%";
             sleepingCapibara.style.transform = "translate(-50%, 50%)";
             
-            // Iniciar cuenta regresiva
+            // Iniciar cuenta regresiva (10 segundos con sonido)
             energyOutTimer = 10;
             countdown.textContent = `El capibara se acerca... ${energyOutTimer}`;
             
@@ -1277,6 +1859,9 @@
                 
                 if (energyOutTimer <= 0) {
                     clearInterval(energyOutInterval);
+                    // Detener sonido de energía agotada
+                    soundEnergyOut.pause();
+                    soundEnergyOut.currentTime = 0;
                     triggerEnergyOutJumpscare();
                 }
             }, 1000);
@@ -1295,9 +1880,15 @@
             gameActive = false;
             energyOutSequenceActive = false;
             
+            // Detener todos los sonidos y contadores
+            if (doorCountdownInterval) {
+                clearInterval(doorCountdownInterval);
+            }
             if (energyOutInterval) {
                 clearInterval(energyOutInterval);
             }
+            soundEnergyOut.pause();
+            soundEnergyOut.currentTime = 0;
             
             energyOutSequence.classList.remove('active');
             showJumpscare("CAPIBARA");
@@ -1313,21 +1904,28 @@
             }, 3000);
         }
         
-        // Game over
+        // Game over (MODIFICADO PARA INCLUIR VICTORIA DEL SEGUNDO CÓDIGO)
         function gameOver(reason) {
             gameActive = false;
             
             let message = "";
             if (reason === "ENERGÍA") {
                 message = "Te quedaste sin energía y el capibara te atrapó.";
+                gameOverMessage.textContent = message;
+                gameOverScreen.style.display = "flex";
+                winScreen.style.display = "none";
             } else if (reason === "TIME") {
                 message = "¡Felicidades! Has sobrevivido hasta las 6:00 AM.";
+                winMessage.textContent = message;
+                gameOverScreen.style.display = "none";
+                winScreen.style.display = "flex";
+                playSound(soundVictory); // Música de victoria (DEL SEGUNDO CÓDIGO)
             } else {
                 message = "El capibara entró por la puerta abierta y te atrapó.";
+                gameOverMessage.textContent = message;
+                gameOverScreen.style.display = "flex";
+                winScreen.style.display = "none";
             }
-            
-            gameOverMessage.textContent = message;
-            gameOverScreen.style.display = "flex";
         }
         
         // Reiniciar juego
@@ -1340,32 +1938,49 @@
             leftDoorClosed = false;
             rightDoorClosed = false;
             lightsOn = false;
-            currentCamera = 1;
+            currentCamera = 0;
             energyOutSequenceActive = false;
             energyOutTimer = 10;
             capibara.isPeeking = false;
+            doorCountdownActive = false;
+            doorCountdownValue = 10;
+            capibara.stuckTimer = 0; // DEL SEGUNDO CÓDIGO
             
             // Reiniciar capibara
             capibara.location = "stage";
             capibara.lastMovement = 0;
             
-            // Aplicar configuración de noche
+            // Aplicar configuración de noche (CONSUMO REDUCIDO)
             const settings = nightSettings[currentNight];
             capibara.movementChance = settings.movementChance;
             capibara.energyDrain = settings.energyDrain;
             capibara.speed = settings.speed;
+            
+            // Detener todos los intervalos
+            if (doorCountdownInterval) {
+                clearInterval(doorCountdownInterval);
+                doorCountdownInterval = null;
+            }
+            if (energyOutInterval) {
+                clearInterval(energyOutInterval);
+                energyOutInterval = null;
+            }
+            
+            // Detener sonidos
+            soundEnergyOut.pause();
+            soundEnergyOut.currentTime = 0;
+            soundVictory.pause(); // DEL SEGUNDO CÓDIGO
+            soundVictory.currentTime = 0; // DEL SEGUNDO CÓDIGO
             
             // Limpiar vistas
             cameraView.classList.remove('active');
             energyOutSequence.classList.remove('active');
             jumpscareScreen.style.display = "none";
             gameOverScreen.style.display = "none";
+            winScreen.style.display = "none"; // DEL SEGUNDO CÓDIGO
+            doorCountdownDisplay.style.display = 'none';
             
-            // Limpiar intervalos
-            if (energyOutInterval) {
-                clearInterval(energyOutInterval);
-            }
-            
+            createCameraInterface();
             updateUI();
         }
         
@@ -1381,15 +1996,19 @@
             restartGame();
         }
         
-        // Intentar reiniciar sistemas
+        // Intentar reiniciar sistemas (MODIFICADO: ahora da 20% de energía - DEL SEGUNDO CÓDIGO)
         function tryRestartSystems() {
             if (!energyOutSequenceActive || energy > 0) return;
             
             if (Math.random() < 0.15) {
-                // Éxito
+                // Éxito - da 20% de energía (corregido del segundo código)
                 energy = 20;
                 gameActive = true;
                 energyOutSequenceActive = false;
+                
+                // Detener sonido de energía agotada
+                soundEnergyOut.pause();
+                soundEnergyOut.currentTime = 0;
                 
                 if (energyOutInterval) {
                     clearInterval(energyOutInterval);
@@ -1408,20 +2027,50 @@
             }
         }
         
-        // Avanzar tiempo
+        // Cambiar cámara
+        function switchCamera(index) {
+            if (index === currentCamera || !camerasActive || energy <= 0) return;
+            
+            playSound(soundClick);
+            playSound(soundStatic);
+            
+            currentCamera = index;
+            consumeEnergy(0.25); // Reducido de 0.5
+            updateUI();
+        }
+        
+        // Mover cámara izquierda
+        function moveCameraLeft() {
+            if (!camerasActive || energy <= 0) return;
+            
+            if (currentCamera > 0) {
+                switchCamera(currentCamera - 1);
+            }
+        }
+        
+        // Mover cámara derecha
+        function moveCameraRight() {
+            if (!camerasActive || energy <= 0) return;
+            
+            if (currentCamera < cameras.length - 1) {
+                switchCamera(currentCamera + 1);
+            }
+        }
+        
+        // Avanzar tiempo (CONSUMO REDUCIDO)
         function advanceTime() {
             if (!gameActive || energyOutSequenceActive) return;
             
             time += 1;
             
-            // Consumo base
-            consumeEnergy(0.05);
+            // Consumo base REDUCIDO
+            consumeEnergy(0.025); // Antes 0.05
             
-            // Consumo por sistemas
-            if (camerasActive) consumeEnergy(0.1);
-            if (leftDoorClosed) consumeEnergy(0.2);
-            if (rightDoorClosed) consumeEnergy(0.2);
-            if (lightsOn) consumeEnergy(0.15);
+            // Consumo por sistemas REDUCIDO
+            if (camerasActive) consumeEnergy(0.05); // Antes 0.1
+            if (leftDoorClosed) consumeEnergy(0.1); // Antes 0.2
+            if (rightDoorClosed) consumeEnergy(0.1); // Antes 0.2
+            if (lightsOn) consumeEnergy(0.075); // Antes 0.15
             
             // Mover capibara
             moveCapibara();
@@ -1433,8 +2082,6 @@
             
             updateUI();
         }
-        
-        let lastCameraChange = 0;
         
         // Configurar controles
         function setupControls() {
@@ -1470,9 +2117,20 @@
                     toggleCameras();
                 }
                 
-                // Cambiar cámaras
-                if (key >= '1' && key <= '4' && camerasActive && energy > 0) {
-                    switchCamera(parseInt(key));
+                // Mover cámara
+                if ((key === 'arrowleft' || key === 'a') && camerasActive && energy > 0) {
+                    moveCameraLeft();
+                }
+                if ((key === 'arrowright' || key === 'd') && camerasActive && energy > 0) {
+                    moveCameraRight();
+                }
+                
+                // Selección numérica de cámaras (1-7)
+                if (key >= '1' && key <= '7' && camerasActive && energy > 0) {
+                    const num = parseInt(key) - 1;
+                    if (num < cameras.length) {
+                        switchCamera(num);
+                    }
                 }
                 
                 // Puertas
@@ -1489,7 +2147,7 @@
                 }
             });
             
-            // Botones del juego
+            // Botones del juego DESKTOP
             cameraBtn.addEventListener('click', () => {
                 if (!gameActive || energy <= 0) return;
                 toggleCameras();
@@ -1510,14 +2168,36 @@
                 toggleRightDoor();
             });
             
-            cameraBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    if (!gameActive || !camerasActive || energy <= 0) return;
-                    switchCamera(parseInt(btn.dataset.camera));
-                });
+            // Controles para MÓVIL
+            mobileLeftDoor.addEventListener('click', () => {
+                if (!gameActive || energy <= 0) return;
+                toggleLeftDoor();
             });
             
+            mobileRightDoor.addEventListener('click', () => {
+                if (!gameActive || energy <= 0) return;
+                toggleRightDoor();
+            });
+            
+            mobileCameraBtn.addEventListener('click', () => {
+                if (!gameActive || energy <= 0) return;
+                toggleCameras();
+            });
+            
+            mobileLightsBtn.addEventListener('click', () => {
+                if (!gameActive || energy <= 0) return;
+                toggleLights();
+            });
+            
+            mobileCamLeftBtn.addEventListener('click', moveCameraLeft);
+            mobileCamRightBtn.addEventListener('click', moveCameraRight);
+            
             restartButton.addEventListener('click', restartGame);
+            winRestartButton.addEventListener('click', restartGame); // DEL SEGUNDO CÓDIGO
+            backToMenuButton.addEventListener('click', () => { // DEL SEGUNDO CÓDIGO
+                gameContainer.style.display = "none";
+                mainMenu.style.display = "flex";
+            });
             
             soundToggle.addEventListener('click', () => {
                 soundEnabled = !soundEnabled;
@@ -1534,8 +2214,8 @@
             
             if (camerasActive) {
                 cameraView.classList.add('active');
+                consumeEnergy(0.7); // Reducido de 1
                 updateCameraView();
-                consumeEnergy(1);
             } else {
                 cameraView.classList.remove('active');
             }
@@ -1543,49 +2223,65 @@
             updateUI();
         }
         
-        function switchCamera(camNumber) {
-            if (camNumber === currentCamera) return;
-            
-            playSound(soundClick);
-            playSound(soundStatic);
-            lastCameraChange = Date.now();
-            
-            currentCamera = camNumber;
-            consumeEnergy(0.5);
-            updateUI();
-        }
-        
         function toggleLeftDoor() {
             playSound(soundDoor);
             leftDoorClosed = !leftDoorClosed;
-            consumeEnergy(0.5);
+            consumeEnergy(0.4); // Reducido de 0.5
+            
+            // Si se cierra la puerta mientras el capibara está ahí, detener contador
+            if (leftDoorClosed && capibara.location === "door_left") {
+                stopDoorCountdown();
+            }
+            
             updateUI();
         }
         
         function toggleRightDoor() {
             playSound(soundDoor);
             rightDoorClosed = !rightDoorClosed;
-            consumeEnergy(0.5);
+            consumeEnergy(0.4); // Reducido de 0.5
+            
+            // Si se cierra la puerta mientras el capibara está ahí, detener contador
+            if (rightDoorClosed && capibara.location === "door_right") {
+                stopDoorCountdown();
+            }
+            
             updateUI();
         }
         
         function toggleLights() {
             playSound(soundLight);
             lightsOn = !lightsOn;
-            consumeEnergy(0.5);
+            consumeEnergy(0.5); // Reducido de 0.5
             updateUI();
         }
         
         // Inicializar juego
         function initGame() {
             initAudio();
+            createCameraInterface();
             setupControls();
             
             // Configurar temporizador (4 minutos reales = 240 segundos)
             setInterval(advanceTime, 666); // 0.666 segundos por minuto de juego
             
-            console.log("Five Nights at Capibara's - Juego Inicializado");
-            console.log("Controles: C (cámaras), 1-4 (cambiar cámara), Q/E (puertas), F (luces), ESPACIO (reiniciar sistemas)");
+            console.log("Five Nights at Capibara's - Juego Combinado");
+            console.log("Características del primer código:");
+            console.log("1. Sistema de cámaras con imágenes y miniaturas");
+            console.log("2. Contador de puerta de 10 segundos");
+            console.log("3. Consumo de energía reducido 50%");
+            console.log("4. Sonido de energía agotada");
+            
+            console.log("Características del segundo código:");
+            console.log("1. Pantalla de victoria con música");
+            console.log("2. Bug de la cocina corregido");
+            console.log("3. Sistema de movimiento mejorado");
+            console.log("4. Energía de reinicio: 20%");
+            
+            // Detectar dispositivo móvil
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                console.log("Dispositivo móvil detectado, controles táctiles activados");
+            }
         }
         
         // Iniciar al cargar
